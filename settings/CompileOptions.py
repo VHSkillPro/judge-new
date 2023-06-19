@@ -1,4 +1,4 @@
-import Constants
+import settings.Constants as Constants
 
 compileOptions = {
     Constants.WINDOWS : {
@@ -15,11 +15,11 @@ runOptions = {
     Constants.WINDOWS : {
         "c" : "$fileNameWithoutExt.exe",
         "cpp" : "$fileNameWithoutExt.exe",
-        "py" : "python3 -m compileall -q $fileName"
+        "py" : "python3 -m compileall -q $fileNameWithoutExt.py"
     },
     Constants.LINUX : {
         "c" : "./$fileNameWithoutExt",
         "cpp" : "./$fileNameWithoutExt",
-        "py" : "python3 -m compileall -q $fileName"
+        "py" : "python3 -m compileall -q $fileNameWithoutExt.py"
     }
 }
