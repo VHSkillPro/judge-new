@@ -21,11 +21,11 @@ def getCompileCommand(fileName: str) -> str | None:
         return None
     cmd = CompileOptions.compileOptions[os.name][language]
     cmd = cmd.replace("$fileNameWithoutExt", getFileNameWithoutExt(fileName))
-    return cmd.replace("$fileName", fileName)
+    return cmd.replace("$fileName", fileName).split(sep=" ")
 
 def getRunCommand(fileName: str) -> str :
     language = getLanguage(fileName)
     if not haveRun(language) :
         return None
     cmd = CompileOptions.runOptions[os.name][language]
-    return cmd.replace("$fileNameWithoutExt", getFileNameWithoutExt(fileName))
+    return cmd.replace("$fileNameWithoutExt", getFileNameWithoutExt(fileName)).split(sep=" ")
