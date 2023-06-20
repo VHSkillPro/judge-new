@@ -38,6 +38,7 @@ class Process :
         
         proc = subprocess.Popen(
             args = compile.getRunCommand(self.fileName, argv),
+            stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE
         )
