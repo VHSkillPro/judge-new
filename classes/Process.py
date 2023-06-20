@@ -23,6 +23,7 @@ class Process :
         try :
             stdout, stderr = process.communicate()
             if (process.returncode == 0) :
+                self.isCompiled = True
                 return CompletedProcess(Constants.RETURN_CODE_ACCEPT, stdout.decode("utf-8"), stderr.decode("utf-8"))
             else :
                 return CompletedProcess(Constants.RETURN_CODE_COMPILE_ERROR, stdout.decode("utf-8"), stderr.decode("utf-8"))
