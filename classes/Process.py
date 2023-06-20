@@ -21,7 +21,7 @@ class Process :
             stderr = subprocess.PIPE
         )
         try :
-            stdout, stderr = process.communicate(timeout = self.timelimit / 1000)
+            stdout, stderr = process.communicate()
             if (process.returncode == 0) :
                 return CompletedProcess(Constants.RETURN_CODE_ACCEPT, stdout.decode("utf-8"), stderr.decode("utf-8"))
             else :
