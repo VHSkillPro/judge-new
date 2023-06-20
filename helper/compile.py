@@ -15,7 +15,7 @@ def haveCompile(language: str) -> bool:
 def haveRun(language: str) -> bool :
     return language in CompileOptions.runOptions[os.name]
 
-def getCompileCommand(fileName: str) -> str | None:
+def getCompileCommand(fileName: str) -> list[str] | None:
     language = getLanguage(fileName)
     if not haveCompile(language) :
         return None
@@ -23,9 +23,9 @@ def getCompileCommand(fileName: str) -> str | None:
     cmd = cmd.replace("$fileNameWithoutExt", getFileNameWithoutExt(fileName))
     return cmd.replace("$fileName", fileName).split(sep=" ")
 
-def getRunCommand(fileName: str) -> str :
+def getRunCommand(fileName: str, argv: list[str] = None) -> list[str] | None :
     language = getLanguage(fileName)
     if not haveRun(language) :
         return None
     cmd = CompileOptions.runOptions[os.name][language]
-    return cmd.replace("$fileNameWithoutExt", getFileNameWithoutExt(fileName)).split(sep=" ")
+    return cmd.replace("$fileNameWithoutExt", getFileNameWithoutExt(fileName)).split(sep=" ") + (argv if argv != None else [])

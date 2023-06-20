@@ -30,13 +30,13 @@ class Process :
         except subprocess.TimeoutExpired :
             return CompletedProcess(Constants.RETURN_CODE_TIME_LIMIT_EXCEED)
     
-    def run(self, stdin: str = None) -> CompletedProcess:
+    def run(self, stdin: str = None, argv: list[str] = None) -> CompletedProcess:
         compileProc = self.compile()
         if (compileProc != None) and (compileProc.returncode != Constants.RETURN_CODE_ACCEPT):
             return compileProc
         
         proc = subprocess.Popen(
-            args = compile.getRunCommand(self.fileName),
+            args = compile.getRunCommand(self.fileName, argv),
             stdout = subprocess.PIPE,
             stderr = subprocess.PIPE
         )
