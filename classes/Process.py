@@ -1,5 +1,5 @@
 import subprocess
-import helper.compile as compile
+import helpers.compile as compile
 import settings.Judges as Judges
 import settings.Constants as Constants
 from classes.CompletedProcess import CompletedProcess
